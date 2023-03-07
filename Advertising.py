@@ -17,7 +17,7 @@ def user_input_features():
             'sepal_width': sepal_width,
             'petal_length': petal_length,
             'petal_width': petal_width}
-    features = pd.DataFrame(df, index=[0])
+    features = pd.DataFrame(dp, index=[0])
     return features
 
 df = user_input_features()
