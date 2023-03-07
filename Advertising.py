@@ -9,7 +9,7 @@ sg = pd.DataFrame(dp)
 st.sidebar.header('User Input Parameters')
 
 def user_input_features():
-    sepal_length = st.sidebar.slider('Sales', sg['Sales'].min(axis=1), sg['Sales'].max(),sg['Sales'].median())
+    sepal_length = st.sidebar.slider('Sales', 1, 100,50)
     sepal_width = st.sidebar.slider('TV', 2.0, 4.4, 3.4)
     petal_length = st.sidebar.slider('Radio', 1.0, 6.9, 1.3)
     petal_width = st.sidebar.slider('Newspaper', 0.1, 2.5, 0.2)
