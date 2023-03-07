@@ -26,8 +26,8 @@ st.subheader('User Input parameters')
 st.write(df)
 
 
-X = dp
-Y = dp['Sales']
+X = sg
+Y = sg['Sales']
 
 clf = RandomForestClassifier()
 clf.fit(X, Y)
