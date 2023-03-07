@@ -2,9 +2,9 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 
-df = pd.read_csv('Advertising.csv')
+dp = pd.read_csv('Advertising.csv')
 st.header("My first Streamlit App")
-st.write(df)
+st.write(dp)
 
 st.sidebar.header('User Input Parameters')
 
@@ -26,6 +26,24 @@ st.subheader('User Input parameters')
 st.write(df)
 
 
+X = dp
+Y = dp['Sales']
+
+clf = RandomForestClassifier()
+clf.fit(X, Y)
+
+prediction = clf.predict(df)
+prediction_proba = clf.predict_proba(df)
+
+st.subheader('Class labels and their corresponding index number')
+st.write(clf)
+
+st.subheader('Prediction')
+st.write(clf[prediction])
+#st.write(prediction)
+
+st.subheader('Prediction Probability')
+st.write(prediction_proba)
 
 
 
