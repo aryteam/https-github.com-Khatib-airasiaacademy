@@ -1,49 +1,46 @@
 import streamlit as st
-import numpy as np
 import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
 
-dp = pd.read_csv('Advertising.csv')
-st.header("My first Streamlit App")
-st.write(dp)
-sg = pd.DataFrame(dp)
+df = pd.read_csv('Advertising.csv')
+
+st.write("""
+# Number of Sales Prediction App
+This app predicts the *Number of Sales*!
+""")
+
+st.write("Below are the data:")
+
+st.write(df)
+
 st.sidebar.header('User Input Parameters')
 
 def user_input_features():
-    sepal_length = st.sidebar.slider('Sales', 1, 100,50)
-    sepal_width = st.sidebar.slider('TV', 2.0, 4.4, 3.4)
-    petal_length = st.sidebar.slider('Radio', 1.0, 6.9, 1.3)
-    petal_width = st.sidebar.slider('Newspaper', 0.1, 2.5, 0.2)
-    data = {'sepal_length': sepal_length,
-            'sepal_width': sepal_width,
-            'petal_length': petal_length,
-            'petal_width': petal_width}
-    features = pd.DataFrame(dp, index=[0])
+    tv_value = st.sidebar.slider('TV Value', 0, 150, 300)
+    radio_value = st.sidebar.slider('Radio Value', 0, 25, 50)
+    newspaper_value = st.sidebar.slider('Newspaper Value', 0, 75, 150)
+    data = {'TV': tv_value,
+            'Radio': radio_value,
+            'Newspaper': newspaper_value}
+    features = pd.DataFrame(data, index=[0])
     return features
 
-df = user_input_features()
+uif = user_input_features()
 
 st.subheader('User Input parameters')
-st.write(df)
+st.write(uif)
 
+data = pd.read_csv('Advertising.csv')
+data = data.drop(data.columns[0], axis=1)
 
-X = sg
-Y = sg['Sales']
+x = data[['TV', 'Radio', 'Newspaper']]
+y = data[ 'Sales' ]
 
-clf = RandomForestClassifier()
-clf.fit(X, Y)
+regr = LinearRegression()
+regr.fit(x,y)
 
-prediction = clf.predict(df)
-prediction_proba = clf.predict_proba(df)
-
-st.subheader('Class labels and their corresponding index number')
-st.write(clf)
+prediction = regr.predict(uif)
 
 st.subheader('Prediction')
-st.write(clf[prediction])
-#st.write(prediction)
-
-st.subheader('Prediction Probability')
-st.write(prediction_proba)
-
-
-
+st.write(prediction[0])
