@@ -5,11 +5,11 @@ import pandas as pd
 dp = pd.read_csv('Advertising.csv')
 st.header("My first Streamlit App")
 st.write(dp)
-
+sg = pd.DataFrame(dp)
 st.sidebar.header('User Input Parameters')
 
 def user_input_features():
-    sepal_length = st.sidebar.slider('Sales', dp['Sales'].min(), dp['Sales'].max(),dp['Sales'].median())
+    sepal_length = st.sidebar.slider('Sales', sg['Sales'].min(), sg['Sales'].max(),sg['Sales'].median())
     sepal_width = st.sidebar.slider('TV', 2.0, 4.4, 3.4)
     petal_length = st.sidebar.slider('Radio', 1.0, 6.9, 1.3)
     petal_width = st.sidebar.slider('Newspaper', 0.1, 2.5, 0.2)
