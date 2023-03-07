@@ -22,5 +22,5 @@ elif option=='map':
 
     st.map(map_data)
 
-        }))
+}))
 
