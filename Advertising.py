@@ -18,7 +18,7 @@ if option=='line chart':
 
 elif option=='map':
     map_data = pd.DataFrame(df,
-    columns=['lat', 'lon'])
+    columns=['Sales', 'TV'])
 
     st.map(map_data)
 
